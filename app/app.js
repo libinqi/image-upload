@@ -94,6 +94,13 @@ app.use('/upload/goods_info/list', function (req, res, next) {
 });
 
 // bind event
+upload.on('begin', function (fileInfo) {
+    var ext = fileInfo.name.substr(fileInfo.name.lastIndexOf('.') + 1);
+    var datetime=new Date().getTime();
+    var shortid = (datetime+(Math.floor(Math.random() * 10) + datetime).toString(36)).toLowerCase();
+    fileInfo.name = shortid + '.' + ext;
+});
+
 upload.on('end', function (fileInfo) {
     // insert file info
     console.log("文件上传成功");
