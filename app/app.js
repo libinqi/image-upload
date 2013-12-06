@@ -73,24 +73,44 @@ app.use('/upload/line/list', function (req, res, next) {
     });
 });
 
-app.use('/upload/goods_info', upload.fileHandler({
+app.use('/upload/goods', upload.fileHandler({
     tmpDir: dirs.temp,
-    uploadDir: __dirname + dirs.goods_info,
-    uploadUrl: dirs.goods_info_url,
-    imageVersions: resizeConf.goods_info
+    uploadDir: __dirname + dirs.goods,
+    uploadUrl: dirs.goods_url,
+    imageVersions: resizeConf.goods
 }));
 
-app.use('/upload/goods_info/list', function (req, res, next) {
+app.use('/upload/goods/list', function (req, res, next) {
     upload.fileManager({
         uploadDir: function () {
-            return __dirname + dirs.goods_info;
+            return __dirname + dirs.goods;
         },
         uploadUrl: function () {
-            return dirs.goods_info_url;
+            return dirs.goods_url;
         }
     }).getFiles(function (files) {
         res.json(files);
     });
+});
+
+app.use('/upload/vehicle', upload.fileHandler({
+    tmpDir: dirs.temp,
+    uploadDir: __dirname + dirs.vehicle,
+    uploadUrl: dirs.vehicle_url,
+    imageVersions: resizeConf.vehicle
+}));
+
+app.use('/upload/vehicle/list', function (req, res, next) {
+    upload.fileManager({
+        uploadDir: function () {
+            return __dirname + dirs.vehicle;
+        },
+        uploadUrl: function () {
+            return dirs.vehicle_url;
+        }
+    }).getFiles(function (files) {
+            res.json(files);
+        });
 });
 
 // bind event
