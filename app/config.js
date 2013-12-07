@@ -86,6 +86,32 @@ exports.resizeVersion = {
             width: 800,
             height: 600
         }
+    },
+    store : {
+        thumbnail:{
+            width:80,
+            height:"80^",
+            imageArgs: [
+                "-gravity", "center",
+                "-extent", "80x80"
+            ]
+        },
+        small: {
+            width:"200",
+            height:"150^",
+            imageArgs: [
+                "-gravity", "center",
+                "-extent", "200x150"
+            ]
+        },
+        medium:{
+            width:400,
+            height:300
+        },
+        large: {
+            width: 800,
+            height: 600
+        }
     }
 };
 
@@ -102,5 +128,8 @@ exports.directors = {
     goods_url: '/uploads/goods',
 
     vehicle: '/public/uploads/vehicle',
-    vehicle_url: '/uploads/vehicle'
+    vehicle_url: '/uploads/vehicle',
+
+    store: '/public/uploads/store',
+    store_url: '/uploads/store'
 };

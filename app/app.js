@@ -113,6 +113,26 @@ app.use('/upload/vehicle/list', function (req, res, next) {
         });
 });
 
+app.use('/upload/store', upload.fileHandler({
+    tmpDir: dirs.temp,
+    uploadDir: __dirname + dirs.store,
+    uploadUrl: dirs.store_url,
+    imageVersions: resizeConf.store
+}));
+
+app.use('/upload/store/list', function (req, res, next) {
+    upload.fileManager({
+        uploadDir: function () {
+            return __dirname + dirs.store;
+        },
+        uploadUrl: function () {
+            return dirs.store_url;
+        }
+    }).getFiles(function (files) {
+            res.json(files);
+        });
+});
+
 // bind event
 upload.on('begin', function (fileInfo) {
     var ext = fileInfo.name.substr(fileInfo.name.lastIndexOf('.') + 1);
