@@ -73,6 +73,66 @@ app.use('/upload/line/list', function (req, res, next) {
     });
 });
 
+app.use('/upload/port', upload.fileHandler({
+    tmpDir: dirs.temp,
+    uploadDir: __dirname + dirs.port,
+    uploadUrl: dirs.port_url,
+    imageVersions: resizeConf.port
+}));
+
+app.use('/upload/port/list', function (req, res, next) {
+    upload.fileManager({
+        uploadDir: function () {
+            return __dirname + dirs.port;
+        },
+        uploadUrl: function () {
+            return dirs.port_url;
+        }
+    }).getFiles(function (files) {
+            res.json(files);
+        });
+});
+
+app.use('/upload/trainstore', upload.fileHandler({
+    tmpDir: dirs.temp,
+    uploadDir: __dirname + dirs.trainstore,
+    uploadUrl: dirs.trainstore_url,
+    imageVersions: resizeConf.trainstore
+}));
+
+app.use('/upload/trainstore/list', function (req, res, next) {
+    upload.fileManager({
+        uploadDir: function () {
+            return __dirname + dirs.trainstore;
+        },
+        uploadUrl: function () {
+            return dirs.trainstore_url;
+        }
+    }).getFiles(function (files) {
+            res.json(files);
+        });
+});
+
+app.use('/upload/trainline', upload.fileHandler({
+    tmpDir: dirs.temp,
+    uploadDir: __dirname + dirs.trainline,
+    uploadUrl: dirs.trainline_url,
+    imageVersions: resizeConf.trainline
+}));
+
+app.use('/upload/trainline/list', function (req, res, next) {
+    upload.fileManager({
+        uploadDir: function () {
+            return __dirname + dirs.trainline;
+        },
+        uploadUrl: function () {
+            return dirs.trainline_url;
+        }
+    }).getFiles(function (files) {
+            res.json(files);
+        });
+});
+
 app.use('/upload/goods', upload.fileHandler({
     tmpDir: dirs.temp,
     uploadDir: __dirname + dirs.goods,
